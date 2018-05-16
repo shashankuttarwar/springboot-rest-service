@@ -3,13 +3,16 @@
  */
 package com.alp.policymanagement.controller;
 
-import java.util.Date;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alp.policymanagement.model.Policy;
+import com.alp.policymanagement.service.PolicyService;
 
 /**
  * @author lenovo
@@ -17,15 +20,20 @@ import com.alp.policymanagement.model.Policy;
  */
 @RestController
 public class PolicyController {
-
+	
+	@Autowired
+	PolicyService policyService;
+	
     @RequestMapping("/policies")
-    public Policy list(@RequestParam(value="name", defaultValue="World") String name) {
-    	Policy policy = new Policy();
-    	policy.setAmount("123");
-    	policy.setEndDate(new Date());
-    	policy.setName("LIC JEEVAN");
-    	policy.setNumber("1111");
-    	
-    	return policy;
+    public List<Policy> list() {
+    	List<Policy> policies =null;
+    	policies = policyService.getAllPolicies();
+    	return policies;
+    }
+    
+    @PostMapping("/policies")
+    public String update(@RequestBody Policy policy) {
+    	String policyNumber = policyService.updatePolicy(policy);
+    	return policyNumber;
     }
 }
