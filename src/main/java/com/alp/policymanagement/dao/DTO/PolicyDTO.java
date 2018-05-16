@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.alp.policymanagement.model;
+package com.alp.policymanagement.dao.DTO;
 
 import java.util.Date;
 
@@ -9,10 +9,8 @@ import java.util.Date;
  * @author lenovo
  *
  */
-public class Policy extends BaseModel{
+public class PolicyDTO {
 
-	private static final long serialVersionUID = 1L;
-	private long id;
 	private String name = "";
 	private String number = "";
 	private String amount = "";
@@ -65,17 +63,6 @@ public class Policy extends BaseModel{
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	/**
-	 * @return the id
-	 */
-	public long getId() {
-		return id;
-	}
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(long id) {
-		this.id = id;
-	}
+	
 	
 }
